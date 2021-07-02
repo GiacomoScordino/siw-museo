@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	<link th:href="@{/css/collezioneCSS.css}" rel="stylesheet">
+	<link th:href="@{/css/basic.css}" rel="stylesheet">
 <body>
 	<nav><p class="titolo">INTERNATIONAL MUSEUM</p></nav>
-    <div style="display: flex; justify-content: center;">
-    	<div th:if="${collezione}" th:object="${collezione}" class="box">
+    <div style="display: flex; justify-content: center;" >
+    	<div class="box" style="background-color: khaki" th:if="${collezione}" th:object="${collezione}">
 		<p><b>LA COLLEZIONE:</b></p>
 			Nome: <span th:text="*{nome}">qui-va-nome</span><br>
 			Descrizione: <span th:text="*{descrizione}">qui-va-descrizione</span><br>
 			Curatore: <span th:text="*{curatore.nome}+' '+ *{curatore.cognome}">qui-va-curatore</span>
    		</div>
-		<div class="box">
+		<div class="box" style="background-color: powderblue;">
 			<p><b>LE OPERE:</b></p>
 			<ul>
 				<li th:each="opera : ${opereCollezione}">
@@ -22,8 +22,8 @@
 			</ul>
 		</div>
 		<br>
-		<div class="box">
-			<div th:if="${credentials.role == 'ADMIN'}">
+		<div class="box" style="background-color: lightcoral;" th:if="${credentials.role == 'ADMIN'}">
+			<div>
 				<p><b>AGGIUNGI OPERA A COLLEZIONE</b></p>
 				<form th:action="@{'/admin/addOperaACollezione' + '/' + ${collezione.id}}" method="POST" >
 					<select name="opera" id="opera">
@@ -33,12 +33,12 @@
 						th:text="${opera.titolo}"></option>
 					</select>
 					<div>
-						<button type="submit" th:text="#{aggiungi.opera}"></button>
+						<button style="border-radius:15px;border:solid 1px ;margin-top: 3px;" type="submit" th:text="#{aggiungi.opera}"></button>
 					</div>		
 				</form>
 			</div>
 			<div th:if="${credentials.role == 'ADMIN'}">
-				<p><b>RIMUOVI OPERA A COLLEZIONE</b></p>
+				<p><b>RIMUOVI OPERA DA COLLEZIONE</b></p>
 				<form th:action="@{'/admin/rimuoviOpera' + '/' + ${collezione.id}}" method="POST" >
 					<select name="opera" id="opera">
 					<option value="">---Opera---</option>
@@ -47,7 +47,7 @@
 						th:text="${opera.titolo}"></option>
 					</select>
 					<div>
-						<button type="submit" th:text="#{rimuovi}"></button>
+						<button style="border-radius:15px;border:solid 1px ;margin-top: 3px;" type="submit" th:text="#{rimuovi.opera}"></button>
 					</div>		
 				</form>
 		
@@ -56,13 +56,16 @@
 
     	<div th:unless="${collezione}">Non esiste</div>
     </div>
-	<form th:if="${credentials.role == 'ADMIN'}" th:action="@{'/admin/eliminaCollezione' + '/' + ${collezione.id}}" method="POST">
-		<button type="submit" th:text="#{elimina.collezione}"></button>
-	</form>
-	<footer>
-		<div class="footerButton">
-			<a href="/default">Home</a>
+	<div class="flex-container2">
+		<div>
+			<form th:if="${credentials.role == 'ADMIN'}" th:action="@{'/admin/eliminaCollezione' + '/' + ${collezione.id}}"
+				method="POST">
+				<button class="sub-button" type="submit" th:text="#{elimina.collezione}"></button>
+			</form>
 		</div>
-	</footer>
+
+		<div><a href="/default"><button class="sub-button" style="margin-top: 19px;">Home</button></a></div>
+
+	</div>
 </body>
 </html>
