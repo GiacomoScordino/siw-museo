@@ -1,0 +1,17 @@
+UC.1)
+Un visitatore può utilizzare il sistema per registrarsi.
+
+UC.2)
+Un utente può utilizzare il sistema per effettuare il login.
+
+UC.3)
+Un utente loggato può visionare la lista delle collezioni, delle opere, degli artisti che il museo ospita.
+
+UC.4)
+Un amministratore può usare il sistema per inserire i dati di un artista, un'opera, una collezione.
+
+UC.5)
+Un amministratore può aggiungere o rimuovere opere dalla collezione.
+
+UC.6)
+Un amministratore può eliminare opere e collezioni. 
